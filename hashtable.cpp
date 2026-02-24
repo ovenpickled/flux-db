@@ -30,7 +30,7 @@ static HNode **h_lookup(HTab *htab, HNode *key, bool (*eq)(HNode *, HNode *)) {
   }
 
   size_t pos = key -> hcode & htab -> mask;
-  HNode **from = &htab -> tab[pos]     // incoming pointer to the target
+  HNode **from = &htab -> tab[pos];     // incoming pointer to the target
   for (HNode *cur; (cur = *from) != NULL; from = &cur -> next) {
     if (cur -> hcode == key -> hcode && eq(cur, key)) {
       return from;         // may be a node, may be a slot
@@ -119,7 +119,7 @@ HNode *hm_delete(HMap *hmap, HNode *key, bool (*eq)(HNode *, HNode *)) {
 void hm_clear(HMap *hmap) {
   free(hmap -> newer.tab);
   free(hmap -> older.tab);
-  *hmap -> HMap{};
+  *hmap = HMap{};
 }
 
 size_t hm_size(HMap *hmap) {
