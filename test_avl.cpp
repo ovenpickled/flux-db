@@ -4,10 +4,8 @@
 #include <set>
 #include "avl.h"
 
-#define container_of(ptr, type, member) ({
-    const typeof( ((type *)0) -> member ) *_mptr = (ptr);
-    (type *)( (char *)_mptr - offsetof(type, member) );
-    })
+#define container_of(ptr, type, member) \
+  ((type *)((char *)(ptr) - offsetof(type, member)))
 
 struct Data {
   AVLNode node;
@@ -32,7 +30,7 @@ static void add(Container &c, uint32_t val) {
     from = (val < node_val) ? &cur -> left : &cur -> right;
   }
   *from = &data -> node;     // attach the new node
-  data -> node.parent = curr;
+  data -> node.parent = cur;
   c.root = avl_fix(&data -> node);
 }
 
@@ -118,7 +116,7 @@ static void test_insert(uint32_t sz) {
         continue;
       }
       add(c, i);
-      ref.insert(i)
+      ref.insert(i);
     }
     container_verify(c, ref);
 

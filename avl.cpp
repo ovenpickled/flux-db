@@ -141,6 +141,6 @@ AVLNode *avl_del(AVLNode *node) {
   if (parent) {
     from = parent -> left == node ? &parent -> left : &parent -> right;
   }
-  **from = victim;
+  *from = victim;
   return root;
 }
