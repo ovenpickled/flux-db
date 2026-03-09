@@ -58,7 +58,7 @@ static void test_case(uint32_t sz) {
     AVLNode *node = avl_offset(min, (int64_t)i);
     assert(container_of(node, Data, node) -> val == i);
 
-    for (uint32_t j = 0; j < sz; ++i) {
+    for (uint32_t j = 0; j < sz; ++j) {
       int64_t offset = (int64_t)j - (int64_t)i;
       AVLNode *n2 = avl_offset(node, offset);
       assert(container_of(n2, Data, node) -> val == j);

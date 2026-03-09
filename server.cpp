@@ -313,7 +313,7 @@ static void do_set(std::vector<std::string> &cmd, Buffer &out) {
     ent -> str.swap(cmd[2]);
 	} else {
 		// not found, allocate and insert a new pair
-		Entry *ent = new Entry(T_STR);
+		Entry *ent = entry_new(T_STR);
 		ent -> key.swap(key.key);
 		ent -> node.hcode = key.node.hcode;
 		ent -> str.swap(cmd[2]);
