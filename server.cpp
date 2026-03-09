@@ -20,9 +20,9 @@
 #include <string>
 
 // project
-#include "hashtable.h"
-#include "common.h"
-#include "zset.h"
+#include "include/hashtable.h"
+#include "include/common.h"
+#include "include/zset.h"
 
 
 static void msg(const char *msg) {

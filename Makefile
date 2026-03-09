@@ -1,3 +1,5 @@
+CFLAGS = -Iinclude
+
 # Build everything -> make all
 # Build only the server -> make server
 # Build only avl tests -> make test_avl

@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 // project
-#include "zset.h"
-#include "common.h"
+#include "include/zset.h"
+#include "include/common.h"
 
 static ZNode *znode_new(const char *name, size_t len, double score) {
   ZNode *node = (ZNode *)malloc(sizeof(ZNode) + len);
