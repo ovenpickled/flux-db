@@ -13,3 +13,9 @@ build/
 
 # macOS clutter (in case collaborators use it)
 .DS_Store
+
+# Compiled executables
+build/
+*.o
+/client
+/server
