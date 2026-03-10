@@ -1,21 +1,54 @@
-# Compiled binaries and object files
-build/
-*.o
-*.out
-*.a
-*.so
+# Prerequisites
+*.d
 
-# Editor/IDE artifacts
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# debug information files
+*.dwo
+
+# Compiled binaries
+client
+server
+test_avl
+test_offset
+
+# Editor artifacts
 .vscode/
 .idea/
 *.swp
 *~
-
-# macOS clutter (in case collaborators use it)
 .DS_Store
-
-# Compiled executables
-build/
-*.o
-/client
-/server
