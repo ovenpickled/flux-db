@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <set>
-#include "include/avl.h"
+#include "../include/avl.h"
 
 #define container_of(ptr, type, member) \
   ((type *)((char *)(ptr) - offsetof(type, member)))

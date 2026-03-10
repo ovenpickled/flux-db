@@ -1,5 +1,3 @@
-CFLAGS = -Iinclude
-
 # Build everything -> make all
 # Build only the server -> make server
 # Build only avl tests -> make test_avl
@@ -7,14 +5,14 @@ CFLAGS = -Iinclude
 # Build clean artifacts -> make clean
 
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -O2 -g
+CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -O2 -g -Iinclude
 SANFLAGS = -fsanitize=address,undefined
 
 # Sources
 SERVER_SRC = server.cpp hashtable.cpp avl.cpp zset.cpp
 CLIENT_SRC = client.cpp
-TEST_AVL_SRC = test_avl.cpp avl.cpp
-TEST_OFFSET_SRC = test_offset.cpp avl.cpp
+TEST_AVL_SRC = tests/test_avl.cpp avl.cpp
+TEST_OFFSET_SRC = tests/test_offset.cpp avl.cpp
 
 # Default target
 all: server client test_avl test_offset

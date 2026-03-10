@@ -8,6 +8,7 @@
 #include <math.h>     // isnan
 
 // system
+#include <time.h>
 #include <poll.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -95,7 +96,7 @@ struct Conn {
 };
 
 // global states
-struct struct {
+static struct {
   HMap db;
   // a map of all client connections, keyed by fd
   std::vector<Conn *> fd2conn;
@@ -128,7 +129,7 @@ static int32_t handle_accept(int fd) {
   dlist_insert_before(&g_data.idle_list, &conn -> idle_node);
 
   // put it into the map
-  if (g_data, fd2conn.size() <= (size_t)conn -> fd) {
+  if (g_data.fd2conn.size() <= (size_t)conn -> fd) {
     g_data.fd2conn.resize(conn -> fd + 1);
   }
   assert(!g_data.fd2conn[conn -> fd]);
