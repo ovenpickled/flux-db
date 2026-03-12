@@ -319,7 +319,7 @@ static void entry_del(Entry *ent) {
   size_t set_size = (ent -> type == T_ZSET) ? hm_size(&ent -> zset.hmap) : 0;
   const size_t k_large_container_size = 1000;
   if (set_size > k_large_container_size) {
-    thread_pool_queue(&g.data.thread_pool, &entry_del_func, ent);
+    thread_pool_queue(&g_data.thread_pool, &entry_del_func, ent);
   } else {
     entry_del_sync(ent);     // small; avoid context switches
   }
