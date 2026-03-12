@@ -9,7 +9,7 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -O2 -g -Iinclude
 SANFLAGS = -fsanitize=address,undefined
 
 # Sources
-SERVER_SRC = server.cpp hashtable.cpp avl.cpp zset.cpp heap.cpp thread_pool.cpp
+SERVER_SRC = server.cpp hashtable.cpp avl.cpp zset.cpp heap.cpp thread_pool.cpp aof.cpp
 CLIENT_SRC = client.cpp
 TEST_AVL_SRC = tests/test_avl.cpp avl.cpp
 TEST_OFFSET_SRC = tests/test_offset.cpp avl.cpp

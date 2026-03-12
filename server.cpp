@@ -27,6 +27,7 @@
 #include "include/list.h"
 #include "include/heap.h"
 #include "include/thread_pool.h"
+#include "include/aof.h"
 
 
 static void msg(const char *msg) {
@@ -607,28 +608,38 @@ static void do_zquery(std::vector<std::string> &cmd, Buffer &out) {
 }
 
 static void do_request(std::vector<std::string> &cmd, Buffer &out) {
+  bool mutating = false;
+
 	if (cmd.size() == 2 && cmd[0] == "get") {
 		return do_get(cmd, out);
 	} else if (cmd.size() == 3 && cmd[0] == "set") {
 		return do_set(cmd, out);
+    mutating = true;
 	} else if (cmd.size() == 2 && cmd[0] == "del") {
 		return do_del(cmd, out);
+    mutating = true;
   } else if (cmd.size() == 3 && cmd[0] == "pexpire") {
     return do_expire(cmd, out);
+    mutating = true;
   } else if (cmd.size() == 2 && cmd[0] == "pttl") {
     return do_ttl(cmd, out);
 	} else if (cmd.size() == 1 && cmd[0] == "keys") {
     return do_keys(cmd, out);
 	} else if (cmd.size() == 4 && cmd[0] == "zadd") {
     return do_zadd(cmd, out);
+    mutating = true;
   } else if (cmd.size() == 3 && cmd[0] == "zrem") {
     return do_zrem(cmd, out);
+    mutating = true;
   } else if (cmd.size() == 3 && cmd[0] == "zscore") {
     return do_zscore(cmd, out);
   } else if (cmd.size() == 6 && cmd[0] == "zquery") {
     return do_zquery(cmd, out);
   } else {
     return out_err(out, ERR_UNKNOWN, "unknown command.");
+  }
+  if (mutating) {
+    aof_append(cmd);
   }
 }
 
@@ -815,12 +826,30 @@ static void process_timers() {
       break;
     }
   }
+  // fsync AOF once per second
+  static uint64_t last_fsync_ms = 0;
+  if (now_ms - last_fsync_ms >= 1000) {
+    thread_pool_queue(&g_data.thread_pool, [](void *) {
+        aof_flush();
+    }, NULL);
+    last_fsync_ms = now_ms;
+  }
+}
+
+static void aof_replay_handler(std::vector<std::string> &cmd) {
+  // reuse the existing buffer and request handler
+  Buffer ignored;
+  do_request(cmd, ignored);
 }
 
 int main() {
   // initialization
   dlist_init(&g_data.idle_list);
   thread_pool_init(&g_data.thread_pool, 4);
+
+  // AOF
+  aof_replay(&aof_replay_handler);
+  aof_open("aof.log");
 
 	// listening socket
 	int fd = socket(AF_INET, SOCK_STREAM, 0);

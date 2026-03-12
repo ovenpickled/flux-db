@@ -47,6 +47,9 @@ test_avl
 test_offset
 test_heap
 
+# AOF log
+aof.log
+
 # Editor artifacts
 .vscode/
 .idea/
