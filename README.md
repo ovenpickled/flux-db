@@ -1,4 +1,6 @@
 <div align="center">
+
+<img src="docs/banner.gif" alt="flux-db banner" width="100%">
  
 # Flux DB
  
@@ -6,7 +8,7 @@
  
 </div>
 
-A Redis-inspired key-value store built from scratch in C++17. No external dependencies, every data structure is implemented by hand.
+Every data structure is implemented by hand, no external dependencies.
 
 The server handles multiple concurrent clients over TCP using a non-blocking, event-driven loop with `poll()`. A background thread pool handles slow work like large deletions and AOF flushing without stalling the main loop. Data survives restarts via an append-only file (AOF).
 
