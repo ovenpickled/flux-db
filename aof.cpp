@@ -5,6 +5,7 @@
 #include "include/aof.h"
 
 static FILE *aof_fp = NULL;
+static bool aof_replaying = false;
 
 void aof_open(const char *path) {
   // 'a' is append mode, creates file if it doesn't exist
@@ -13,6 +14,7 @@ void aof_open(const char *path) {
 }
 
 void aof_append(const std::vector<std::string> &cmd) {
+  if (aof_replaying) return;
   assert(aof_fp);
   // write each argument space-separated, newline at the end
   for (size_t i = 0; i < cmd.size(); ++i) {
@@ -40,6 +42,7 @@ void aof_flush() {
 
 void aof_replay(void (*handler)(std::vector<std::string> &)) {
   // open for reading only during replay
+  aof_replaying = true;
   FILE *fp = fopen("aof.log", "r");
   if (!fp) {
     return;             // no AOF file yet, fresh start
@@ -82,4 +85,5 @@ void aof_replay(void (*handler)(std::vector<std::string> &)) {
     }
   }
   fclose(fp);
+  aof_replaying = false;
 }
