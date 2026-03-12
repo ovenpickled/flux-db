@@ -9,3 +9,5 @@ struct HeapItem {
 };
 
 void heap_update(HeapItem *a, size_t pos, size_t len);
+size_t heap_left(size_t i);
+size_t heap_right(size_t i);

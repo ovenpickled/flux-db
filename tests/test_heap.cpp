@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <vector>
 #include <map>
-#include "../heap.cpp"
+#include "../include/heap.h"
 
 struct Data {
   size_t heap_idx = -1;

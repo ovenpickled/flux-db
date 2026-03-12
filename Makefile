@@ -9,13 +9,14 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -O2 -g -Iinclude
 SANFLAGS = -fsanitize=address,undefined
 
 # Sources
-SERVER_SRC = server.cpp hashtable.cpp avl.cpp zset.cpp
+SERVER_SRC = server.cpp hashtable.cpp avl.cpp zset.cpp heap.cpp
 CLIENT_SRC = client.cpp
 TEST_AVL_SRC = tests/test_avl.cpp avl.cpp
 TEST_OFFSET_SRC = tests/test_offset.cpp avl.cpp
+TEST_HEAP_SRC = tests/test_heap.cpp heap.cpp
 
 # Default target
-all: server client test_avl test_offset
+all: server client test_avl test_offset test_heap
 
 # Server
 server: $(SERVER_SRC)
@@ -33,10 +34,14 @@ test_avl: $(TEST_AVL_SRC)
 test_offset: $(TEST_OFFSET_SRC)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+# Heap tests
+test_heap: $(TEST_HEAP_SRC)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
 # Debug build with sanitizers
 debug: CXXFLAGS += $(SANFLAGS)
 debug: clean all
 
 # Clean
 clean:
-	rm -f server client test_avl test_offset
+	rm -f server client test_avl test_offset test_heap

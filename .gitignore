@@ -45,6 +45,7 @@ client
 server
 test_avl
 test_offset
+test_heap
 
 # Editor artifacts
 .vscode/
