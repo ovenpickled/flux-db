@@ -81,7 +81,7 @@ Benchmarked on localhost using a custom pipelined benchmark tool
 93–99% of requests complete under 100µs.
 SET includes AOF persistence overhead (fsync every second).
 
-Environment: Arch Linux, [Intel(R) Core(TM) i5-9300HF CPU @ 2.40GHz], single-threaded event loop.
+Environment: Arch Linux, Intel(R) Core(TM) i5-9300HF CPU @ 2.40GHz, single-threaded event loop.
 
 ---
 
