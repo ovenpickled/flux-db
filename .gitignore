@@ -46,6 +46,7 @@ server
 test_avl
 test_offset
 test_heap
+benchmark
 
 # AOF log
 aof.log
