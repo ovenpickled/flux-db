@@ -66,6 +66,25 @@ The server handles multiple concurrent clients over TCP using a non-blocking, ev
 
 ---
 
+## Benchmarks
+
+Benchmarked on localhost using a custom pipelined benchmark tool
+(pipeline depth 32, 50,000 requests per operation).
+
+| Operation | Throughput    | p50  | p99   |
+|-----------|--------------|------|-------|
+| SET       | 150k ops/sec | ~1µs | 84µs  |
+| GET       | 110k ops/sec | ~1µs | 195µs |
+| ZADD      | 149k ops/sec | ~1µs | 85µs  |
+| ZSCORE    | 134k ops/sec | ~1µs | 77µs  |
+
+93–99% of requests complete under 100µs.
+SET includes AOF persistence overhead (fsync every second).
+
+Environment: Arch Linux, [Intel(R) Core(TM) i5-9300HF CPU @ 2.40GHz], single-threaded event loop.
+
+---
+
 ## Project Structure
 
 ```
