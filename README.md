@@ -22,10 +22,13 @@ The server handles multiple concurrent clients over TCP using a non-blocking, ev
 >
 > ![Demo](docs/demo.gif)
 
-> 🖼️ _Screenshots of the server and client_
+> 🖼️ _Screenshots_
 >
-> ![Screenshot](docs/screenshot.png)
-
+> ![Screenshot](docs/screenshot1.png)
+> *SET · GET · TTL expiry · sorted set operations across a live server/client session*
+> 
+> ![Screenshot](docs/screenshot2.png)
+> *Keys restored on startup via AOF replay*
 ---
 
 ## How It Works
