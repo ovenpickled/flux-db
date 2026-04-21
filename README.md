@@ -69,6 +69,36 @@ The server handles multiple concurrent clients over TCP using a non-blocking, ev
 
 ---
 
+## Installation
+
+**Docker (recommended):**
+```bash
+docker pull awwyan/fluxdb
+docker run -p 1234:1234 awwyan/fluxdb
+```
+
+**Binary (Linux x86_64):**
+
+Download the latest release from the [releases page](https://github.com/ovenpickled/flux-db/releases).
+```bash
+tar -xzf fluxdb-v1.0.0-linux-x86_64.tar.gz
+./server
+```
+
+**Build from source:**
+```bash
+git clone https://github.com/ovenpickled/flux-db
+cd flux-db
+make
+./server
+```
+
+Once the server is running on port 1234, use the client to connect:
+```bash
+./client set foo bar
+./client get foo
+```
+
 ## Benchmarks
 
 Benchmarked on localhost using a custom pipelined benchmark tool

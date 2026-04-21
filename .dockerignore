@@ -1,0 +1,4 @@
+aof.log
+*.o
+build/
+.git/
