@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flux DB</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>Flux DB <span class="tag">live demo</span></h1>
+    <p>
+      A Redis-inspired key-value store, built from scratch in C++17 - every data structure implemented by hand.
+      This terminal talks the real binary wire protocol to the actual server binary, not a mock.
+      <a href="https://github.com/ovenpickled/flux-db" target="_blank" rel="noopener noreferrer">source on GitHub</a>
+    </p>
+    <p class="notice">
+      Public shared demo - data is periodically reset and not private. Rate-limited.
+    </p>
+  </header>
+
+  <main>
+    <div id="output" aria-live="polite"></div>
+    <div class="input-row">
+      <span class="prompt">&gt;</span>
+      <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="try: set greeting &quot;hello world&quot;" maxlength="512">
+    </div>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

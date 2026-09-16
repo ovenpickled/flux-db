@@ -1,0 +1,13 @@
+{
+  "name": "flux-db-demo-proxy",
+  "version": "1.0.0",
+  "description": "WebSocket<->TCP bridge exposing flux-db as a browser-based live demo",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
